@@ -1,0 +1,28 @@
+﻿@page "/movies"
+
+<h3>Movies</h3>
+
+@if (_movies is not null)
+{
+    <ul>
+        @foreach (var movie in _movies)
+        {
+            <li @onclick="() => Select(movie)">@movie.Title</li>
+        }
+    </ul>
+}
+
+@if (_newMovie is not null)
+{
+    <h3>Create movie...</h3>
+    <input type="text" @bind="_newMovie.Title" />
+    <button type="button" class="btn btn-primary" @onclick="() => Create()">Create</button>
+}
+
+@if (_selectedMovie is not null)
+{
+    <h3>Update movie...</h3>
+    <input type="text" @bind="_selectedMovie.Title" />
+    <button type="button" class="btn btn-primary" @onclick="() => Update()">Update</button>
+    <button type="button" class="btn btn-danger" @onclick="() => Delete(_selectedMovie.Id)">Delete</button>
+}
